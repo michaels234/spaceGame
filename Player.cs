@@ -65,14 +65,14 @@ public class Player : MonoBehaviour
 		mouseX = Input.GetAxis("Mouse X");
 		mouseY = Input.GetAxis("Mouse Y");
 
-		// player rotation
+		// PLAYER ROTATION
 		if (areMagneticShoesOn & isGrounded)
-		{ // grounded
+		{ // GROUNDED PLAYER ROTATION
 			rigidBody.transform.Rotate(new Vector3(0, mouseX, 0) * groundedRotationSensitivity);
 			camera.transform.Rotate(new Vector3(-mouseY, 0, 0) * groundedRotationSensitivity);
 		}
 		else
-		{ // flying
+		{ // FLYING PLAYER RORATION, REGARDLESS OF MAGNET SHOES ON OR NOT
 			rigidBody.AddRelativeTorque(new Vector3(-mouseY, mouseX, 0) * floatingRotationSensitivity);
 		}
 	}
@@ -86,9 +86,9 @@ public class Player : MonoBehaviour
 		float magneticStrength = 5;
 		Vector3 footPoint = transform.TransformPoint(new Vector3(0, localFootPoint/transform.lossyScale.y, 0));
 
-		// movement
+		// PLAYER MOVEMENT
 		if (areMagneticShoesOn)
-		{
+		{ // MAGNET SHOES ON PLAYER MOVEMENT
 			RaycastHit[] hits = Physics.SphereCastAll(transform.position, magneticShoesMaxRadius, transform.forward, 0);
 			Collider closestElement = null;
 			int doOrNot = 0;
@@ -97,7 +97,7 @@ public class Player : MonoBehaviour
 			{
 				Vector3 tempElementClosestPoint = hits[i].collider.ClosestPointOnBounds(footPoint);
 				float elementDistance = Vector3.Distance(tempElementClosestPoint, footPoint);
-				if (hits.Length > 1) // player is always closest element
+				if (hits.Length > 1) // player is always closest element, so ignore that first element
 				{
 					if (elementDistance < closestElementDistance & hits[i].collider.transform.gameObject.name != "Player")
 					{
@@ -110,7 +110,7 @@ public class Player : MonoBehaviour
 				}
 			}
 			if (!isGrounded)
-			{ // magnetizing down
+			{ // MAGNETIZING DOWNWARD PLAYER MOVEMENT, STILL NOT GROUNDED
 				// get ray cast from feet to surface below feet, use that distance as F = c2/(c1+d)^2
 				// once i can get the distance between player and closest thing below it, i can see the force of the magnet
 				// and if theres nothing below it, the for
@@ -133,7 +133,7 @@ public class Player : MonoBehaviour
 				rigidBody.constraints = RigidbodyConstraints.None;
 			}
 			else
-			{ // grounded
+			{ // GROUNDED PLAYER MOVEMENT
 				if (stickIt)
 				{
 					rigidBody.angularVelocity = new Vector3(0, 0, 0);
@@ -148,7 +148,7 @@ public class Player : MonoBehaviour
 			}
 		}
 		else
-		{ // flying
+		{ // FLYING PLAYER MOVEMENT WITH MAGNET SHOES OFF
 			if (boostKeyPressed)
 			{
 				rigidBody.AddRelativeForce(Vector3.forward * boostStrength * boostDirection, ForceMode.Acceleration);
@@ -167,7 +167,7 @@ public class Player : MonoBehaviour
 		rigidBody.velocity = transform.rotation * new Vector3(velX, velY, velZ);
 	}
 
-	// Detect collision with floor
+	// DETECT COLLISION WITH AN OBJECT
 	void OnCollisionEnter(Collision hit)
 	{
 		collisionCount += 1;
@@ -178,7 +178,7 @@ public class Player : MonoBehaviour
 		}
 	}
  
-	// Detect collision exit with floor
+	// DETECT EXITING A COLLOSION WITH AN OBJECT
 	void OnCollisionExit(Collision hit)
 	{
 		if (collisionCount == 1)

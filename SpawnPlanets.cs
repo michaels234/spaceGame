@@ -12,7 +12,6 @@ public class SpawnPlanets : MonoBehaviour
 	private int timeToSpawn;
 	public float speed = 50.0f;
 
-    // Start is called before the first frame update
     void Start()
     {
 		timeToSpawn = Random.Range(1, 5);
@@ -33,7 +32,6 @@ public class SpawnPlanets : MonoBehaviour
 		spawned.GetComponent<Rigidbody>().velocity = new Vector3(Mathf.Cos(shipRotation.y - 90) * speed, 0, Mathf.Sin(shipRotation.y - 90) * speed);
 	}
 
-    // Update is called once per frame
     void Update()
     {
 		timer += Time.deltaTime;
