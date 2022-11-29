@@ -1,0 +1,5 @@
+TODO
+	when you turn off magnet shoes, camera snaps to looking forard
+		want to slerp to looking forward
+	in some cases, it gets stuck grounded with feet not flat on the surface
+		line 158: need to check foot is perpendicular instead, and distance, tho distance is having an issue now so maybe a less than kinda thing
