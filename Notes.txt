@@ -1,5 +1,85 @@
 TODO
-	when you turn off magnet shoes, camera snaps to looking forard
-		want to slerp to looking forward
-	in some cases, it gets stuck grounded with feet not flat on the surface
-		line 158: need to check foot is perpendicular instead, and distance, tho distance is having an issue now so maybe a less than kinda thing
+	new features
+		basic key features (not all are listed)
+			planets
+				spawn, fly by, disappear
+				remember locations of spawned planets and their characteristics
+			ship
+				ability to decompress / recompress (air in / out / low oxygen etc.)
+				cockpit (lol)
+					player sits in pilot seat, can control ship movement
+				ability to warp to new areas
+					warp to specific place visible on map
+					far matter warp
+						warp randomly to unknown area outside of map but it has detectable matter
+						warp to stars and planets and typical stuff. you usually want to warp this way if you far warp
+					far warp
+						warp randomly to anywhere at all outside of map
+						this won't usually be used, because a very very high percent of the time this will warp you to empty space (not interesting)
+						but sometimes, rarely, it will warp to something that isn't detectable matter, and there you can find sick and rare shit
+			player
+				
+			other
+				vr controls
+		needed for ease of play
+			player
+***				screen pointer showing direction of set point (ship), at first instead of custom point, could be last touched
+					getting there! but everythings backward. it only shows when ship is on screen. and directions are all opposite. and it switches at a certain spot too.
+		appearances
+			player
+				instead of magnet on off written on screen, lightup shoe colors
+				sounds and visible air tufts for backpack directioning / boosting
+				player shape instead of rectangle
+				appearance of suit vs no suit
+				player movement animation instead of static shap
+				walking sounds
+			ship
+				ship shape (lol)
+					multiple rooms, doors, stairs, ramps, etc.
+		other
+			speed is relative. if ship is going at speed A, player speed is A plus the speed relative to the ship.
+				we don't always care about that though. And what is the ships speed A relative to?
+				the ground from which it took off from last? need to be able to set what is speed relative to.
+	bugs
+		player
+			direction pointer UI clitches for just 1 point, probly at switch of z coordinate
+			when you turn off magnet shoes, camera snaps to looking forward
+				want to slerp to looking forward (maybe done?)
+			torqueing to when laying down doesnt smoothely transition to standing, tho i can't find a way to fix it 40 degrees works best in every other way. but why 40???????
+			in some cases, it gets stuck grounded with feet not flat on the surface
+				line 158: need to check foot is perpendicular instead, and distance, tho distance is having an issue now so maybe a less than kinda thing
+			sometimes walls still flip out the camera when changing camera distance to  go in front of walls
+			sometimes player gets stuck on a corner and wierd shit happens
+DONE
+	player
+		UI
+			speed indicator
+			magnet shoes on / off indicator
+			pointer showing direction of set point (ship for now, later could be last touched place, or a custom set point)
+		walking controls
+			walk and look around
+			jump
+		flying controls
+			air boost forward / backward
+			air boost rotation
+		magnet shoes controls
+			power on / off
+			locking on to magnetic material and magnetizing toward / losing lock-on / sticking landing
+	ship
+		basic shape to walk on and magnetize to
+		one pressable button, controls lights on / off
+	planets
+		not active yet, foundation has been started though
+NOTES
+	traveling
+		Normal booster engine travel (1 planet scale)
+		Normal warp on map, in radar radius. Always in same galaxy forever
+		Far warp outside of galaxy. Not directional, 2 types: random, or to a galaxy I've been
+	universe
+		Galaxies are too big to see more than one on a map
+		The map is super big actually, so flying with engines barely gets you anywhere at all on the map. Super slow. You warp on the map from place to place. Wherever you go you are always the center of the map, so as you move, things go in and out of view on the map. Say you warp to a planet on the map, engines are just used to move around the planet and it's moons.
+		Galaxies never hit each other. So basically no galaxy interaction.
+		You can't warp outside the map with the normal warp you use inside, because you don't know what's out there and you could warp into the center of a star. And also let's just saw normal warp distance is same as visibility distance.
+		So here's what I'm thinking could make things easy.
+		Anywhere you normal warp, it's always same galaxy. Galaxy is essentially endless.
+		To leave a galaxy you must do a far warp. This warps you out of galaxy and maybe there may be nothing. Then sometimes you find a new galaxy. You saved warp coords of the Galaxy you were in so you can warp back to it. The coords tho aren't really on a map, like galaxies aren't anywhere really, they're just a list. There's no direction to find them. Know what I mean?

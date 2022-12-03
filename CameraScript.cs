@@ -16,8 +16,7 @@ public class CameraScript : MonoBehaviour
 	void Start()
 	{
 		thirdPersonCameraLeft = -.8f;
-		//thirdPersonCameraDistance = -6f;
-		thirdPersonCameraDistance = -9f;
+		thirdPersonCameraDistance = -6f;
 		cameraHeight = .5f;
 		wallCameraBuffer = .9f;
 		firstPerson = false;
@@ -33,7 +32,7 @@ public class CameraScript : MonoBehaviour
 			if (Input.GetMouseButtonDown(0)){ // 0 = left click
 				if (hit.collider)
 				{
-					Debug.Log($"HIT {hit.collider.gameObject.name}");
+					//Debug.Log($"HIT {hit.collider.gameObject.name}");
 					var objectClicks = hit.collider.gameObject.GetComponent<ObjectClicks>();
 					if (objectClicks) {
 						objectClicks.left_click();
