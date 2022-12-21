@@ -12,11 +12,11 @@ public class SpawnPlanets : MonoBehaviour
 	private int timeToSpawn;
 	public float speed = 50.0f;
 
-    void Start()
-    {
+	void Start()
+	{
 		timeToSpawn = Random.Range(1, 5);
 		ship = GameObject.Find("Ship");
-    }
+	}
 
 	void SpawnPlanet()
 	{
@@ -32,8 +32,8 @@ public class SpawnPlanets : MonoBehaviour
 		spawned.GetComponent<Rigidbody>().velocity = new Vector3(Mathf.Cos(shipRotation.y - 90) * speed, 0, Mathf.Sin(shipRotation.y - 90) * speed);
 	}
 
-    void Update()
-    {
+	void Update()
+	{
 		timer += Time.deltaTime;
 		if ( timer >= timeToSpawn)
 		{
@@ -41,5 +41,5 @@ public class SpawnPlanets : MonoBehaviour
 			timer = 0;
 			timeToSpawn = Random.Range(1, 5);
 		}
-    }
+	}
 }

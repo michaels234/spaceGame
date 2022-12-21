@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class CameraScript : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class CameraScript : MonoBehaviour
 		thirdPersonCameraDistance = -6f;
 		cameraHeight = .5f;
 		wallCameraBuffer = .9f;
-		firstPerson = false;
+		firstPerson = true; // default camera setting is firstPerson
 	}
 
 	void Update()
@@ -32,11 +33,22 @@ public class CameraScript : MonoBehaviour
 			if (Input.GetMouseButtonDown(0)){ // 0 = left click
 				if (hit.collider)
 				{
-					//Debug.Log($"HIT {hit.collider.gameObject.name}");
-					var objectClicks = hit.collider.gameObject.GetComponent<ObjectClicks>();
-					if (objectClicks) {
-						objectClicks.left_click();
-					}
+					Debug.Log($"HIT {hit.collider.gameObject.name}");
+					//var name = hit.collider.gameObject.name;
+					//var components = hit.collider.gameObject.GetComponents();
+
+
+					//Component[] components = hit.collider.gameObject.GetComponents(typeof(Component));
+					//foreach(Component component in components) {
+					//	Debug.Log($"component {component.name} {hit.collider.gameObject.name}");
+					//	if (component.name == hit.collider.gameObject.name) {
+					//		//Type type = typeof(component.name);
+					//		hit.collider.gameObject.GetComponent(Type.GetType(component.name)).left_click();
+					//		break;
+					//	}
+					//}
+					hit.collider.gameObject.GetComponent<ObjectClicks>().left_click(hit.collider.gameObject.name);
+					//hit.collider.gameObject.GetComponent<T>().left_click(hit.collider.gameObject.name);
 				}
 			}
 		}

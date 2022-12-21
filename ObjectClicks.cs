@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class ObjectClicks : MonoBehaviour
 {
-	
-	private GameObject lights;
 
-	void Start()
-	{
-		lights = GameObject.Find("Lights");
-	}
+	//void Start()
+	//{
+	//	lights = GameObject.Find("Lights");
+	//}
 
-	public void left_click()
+	public virtual void left_click(string name)
 	{
-		lights.SetActive(!lights.activeInHierarchy);
+		Debug.Log($"PARENT {name}");
+		//lights.SetActive(!lights.activeInHierarchy);
 	}
 }

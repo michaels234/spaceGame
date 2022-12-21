@@ -46,7 +46,7 @@ public class Player : MonoBehaviour {
 	private Text speedDisplay; // speed display text component
 	private Text magnetShoesDisplay; // magnetic shoe on / off text component
 	private Text spaceSuitDisplay; // space suit on / off text component
-	private float timeCount = 0.0f;
+	private float timeCount = 0f;
 
 	void Start() {
 		rigidBody = this.GetComponent<Rigidbody>(); // set the rigidBody of the player
@@ -84,6 +84,7 @@ public class Player : MonoBehaviour {
 			rigidBody.velocity = new Vector3(0, 0, 0);
 		}
 		if (Input.GetKeyDown(KeyCode.C)) { // space suit on / off
+			timeCount = 0f;
 			isSpaceSuitOn = !isSpaceSuitOn;
 			spaceSuitDisplay.text = isSpaceSuitOn ? "Space Suit ON" : "Space Suit OFF";
 		}
@@ -92,10 +93,11 @@ public class Player : MonoBehaviour {
 			boostDirection = Input.GetKey("left shift") ? -1 : 1;
 		}
 		if (Input.GetKeyDown(KeyCode.F)) { // magnetic shoes on / off
+			timeCount = 0f;
 			areMagneticShoesOn = !areMagneticShoesOn;
 			magnetShoesDisplay.text = areMagneticShoesOn ? "Magnets ON" : "Magnets OFF";
 			if (!areMagneticShoesOn) {
-				unGround();
+				isGrounded = false;
 			}
 		}
 		moveHorizontal = Input.GetAxis("Horizontal") * movementSensitivity;
@@ -130,8 +132,10 @@ public class Player : MonoBehaviour {
 							closestElementDistance = elementDistance;
 						}
 				}
+
 				elementClosestPointDirection = (elementClosestPoint - footPoint).normalized;
 				isGrounded = elementClosestPointDirection == new Vector3(0, 0, 0); // TODO: add check for perpendicular normals, then check for a while if this made it so it never gets grownded diagonally
+				Debug.Log($"{elementClosestPointDirection}, {isGrounded}, {closestElement.transform.gameObject.name}");
 			}
 			magneticStrength = c1 / Mathf.Pow(c2 + closestElementDistance, 2f) * isMagnetNear;
 
@@ -144,6 +148,9 @@ public class Player : MonoBehaviour {
 			} else { // MAGNET NOT LOCKED ON (EXACTLY THE SAME AS FLYING PLAYER ROTATION, SEE BELOW)
 				if (isSpaceSuitOn) {
 					rigidBody.AddRelativeTorque(new Vector3(mouseY, mouseX, 0) * flyingRotationSensitivity); // note: mouse controls seem to work best in Update
+					if (camera.transform.localRotation == Quaternion.Euler(0, 0, 0)) {
+						timeCount = 0f;
+					}
 					camera.transform.localRotation = Quaternion.Slerp(camera.transform.localRotation, Quaternion.Euler(0, 0, 0), timeCount * slerpSpeed);
 				}
 			}
@@ -153,6 +160,9 @@ public class Player : MonoBehaviour {
 				// mouse controls body rotation
 				rigidBody.AddRelativeTorque(new Vector3(mouseY, mouseX, 0) * flyingRotationSensitivity); // note: mouse controls seem to work best in Update
 				// while flying, camera is to be pointing forward. we slerp up to it so that it doesnt move there suddenly after taking off
+				if (camera.transform.localRotation == Quaternion.Euler(0, 0, 0)) {
+					timeCount = 0f;
+				}
 				camera.transform.localRotation = Quaternion.Slerp(camera.transform.localRotation, Quaternion.Euler(0, 0, 0), timeCount * slerpSpeed);
 			}
 		}
@@ -239,11 +249,7 @@ public class Player : MonoBehaviour {
 			collisionCount -= 1;
 		}
 		if (collisionCount == 0) { // only become ungrounded if the surface you stopped touching was the last collision
-			unGround();
+			isGrounded = false;
 		}
-	}
-
-	void unGround() {
-		isGrounded = false;
 	}
 }

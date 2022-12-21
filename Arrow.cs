@@ -9,17 +9,17 @@ public class Arrow : MonoBehaviour
 	private Renderer[] renderers;
 	private GameObject uiPointer;
 
-    // Start is called before the first frame update
-    void Start()
-    {
+	// Start is called before the first frame update
+	void Start()
+	{
 		uiPointer = this.gameObject;
-    }
+	}
 
-    // Update is called once per frame
-    void Update()
-    {
-        setArrowPosition();
-    }
+	// Update is called once per frame
+	void Update()
+	{
+		setArrowPosition();
+	}
 
 	void setArrowPosition() {
 		renderers = pointTo.GetComponentsInChildren<Renderer>();

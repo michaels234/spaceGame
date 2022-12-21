@@ -8,15 +8,14 @@ TODO
 				ability to decompress / recompress (air in / out / low oxygen etc.)
 				cockpit (lol)
 					player sits in pilot seat, can control ship movement
-				ability to warp to new areas
-					warp to specific place visible on map
-					far matter warp
-						warp randomly to unknown area outside of map but it has detectable matter
-						warp to stars and planets and typical stuff. you usually want to warp this way if you far warp
-					far warp
-						warp randomly to anywhere at all outside of map
-						this won't usually be used, because a very very high percent of the time this will warp you to empty space (not interesting)
-						but sometimes, rarely, it will warp to something that isn't detectable matter, and there you can find sick and rare shit
+				bed / hammock
+***					i want ability to relax on the bed or something, to have a place with a comfortable at-home feeling
+				view seat
+					like the bed, i want a couch or some seat that you can see the beautiful view of space, maybe its a seat for some purpose, like a gunner seat, or a tractor beam seat
+				ladders
+***					gonna use ladders to move thru floors, same as minecraft i figure
+				map + ability to warp to new areas
+					see below in Notes about the universe for warp details
 			player
 				
 			other
@@ -36,6 +35,18 @@ TODO
 			ship
 				ship shape (lol)
 					multiple rooms, doors, stairs, ramps, etc.
+***					working on it, got a simple one. wanna make sure colliders etc work with it. get the collider working with the outter shell. others easily done already.
+***						make cockpit with chair / computer
+***						make boosters on the sides in the back
+***						make loading bay that opens in the front like a draw bridge (animation?)
+***						make viewing room, maybe in the back with all floors included for high cieling, or maybe in the loading bay cuz itll be 2 floors
+***						make tech / engine doors to open in the bottom
+***						make some stuff that you have to fix from the outside, cuz i want that to be a thing you do
+				jet / fire
+			warp
+				i think itd be kinda cool if warp actually took time still, so you have a warp speed appearance going around the ship while you wait. i feel like waiting is good. like in minecraft going a long distance. or like in wind waker. can upgrade to get higher speeds later or something so it isnt too annoying, but waiting and enjoing the journey is an important part i want to maintain.
+			universe
+				the background should change when you warp. maybe each galaxy has a new one. but to really be new itd have to procedurally generate every time. for now thats annoying so skip, and just make like some number of galaxy backgrounds. but keep the idea for the future.
 		other
 			speed is relative. if ship is going at speed A, player speed is A plus the speed relative to the ship.
 				we don't always care about that though. And what is the ships speed A relative to?
@@ -65,6 +76,8 @@ DONE
 		magnet shoes controls
 			power on / off
 			locking on to magnetic material and magnetizing toward / losing lock-on / sticking landing
+		camera
+			first-person and 3rd-person
 	ship
 		basic shape to walk on and magnetize to
 		one pressable button, controls lights on / off
@@ -83,3 +96,7 @@ NOTES
 		So here's what I'm thinking could make things easy.
 		Anywhere you normal warp, it's always same galaxy. Galaxy is essentially endless.
 		To leave a galaxy you must do a far warp. This warps you out of galaxy and maybe there may be nothing. Then sometimes you find a new galaxy. You saved warp coords of the Galaxy you were in so you can warp back to it. The coords tho aren't really on a map, like galaxies aren't anywhere really, they're just a list. There's no direction to find them. Know what I mean?
+	game universe construction
+		player is always center. that way if you decide to get out and float forever, you can. i kinda want to be able to say the universe is infinite and that can only happen if player is the center. otherwise unity will run out of space at some point.
+		gotta do coordinate mapping between came coordinates and "real" universe coordinates.
+		ship location also has to be stored in memory since you can float away from it.
