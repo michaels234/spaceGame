@@ -47,7 +47,9 @@ public class CameraScript : MonoBehaviour
 					//		break;
 					//	}
 					//}
-					hit.collider.gameObject.GetComponent<ObjectClicks>().left_click(hit.collider.gameObject.name);
+					if (hit.collider.gameObject.GetComponent<ObjectClicks>()) {
+						hit.collider.gameObject.GetComponent<ObjectClicks>().left_click(hit.collider.gameObject.name);
+					}
 					//hit.collider.gameObject.GetComponent<T>().left_click(hit.collider.gameObject.name);
 				}
 			}

@@ -1,0 +1,30 @@
+When flying:
+Space: boost forward
+Shift+Space: boost backward
+Mouse movement: body rotation
+
+F: magnetic boots on/off
+
+When magnetized to a surface:
+Space: jump
+WASD: body movement
+Mouse movement: body rotation
+
+Left click: do item action (currently only light switch on wall)
+
+Tips:
+
+If too far away from a surface or moving too fast past a surface,
+the magnetic boots may not be strong enough to pull you to the surface.
+
+When flying toward some desired point, slow down before you get there,
+otherwise you'll fly past.
+
+Watch your speedometer to get an idea of whether you're moving
+away or toward a desired point. But remember speed is non-directional,
+it's only magnitude.
+
+Remember if you're moving perpendicular to a desired point,
+and facing the desired point and boosting toward it,
+that creates an orbit. To go toward the desired point,
+you'll have to decrease your perpendicular velocity.
